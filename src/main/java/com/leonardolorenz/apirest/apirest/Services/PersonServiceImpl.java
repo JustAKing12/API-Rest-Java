@@ -25,9 +25,14 @@ public class PersonServiceImpl implements IPersonService {
 
     @Override
     public Person updatePerson(Long id, Person person) {
-        Person personUpdate = personRepository.getById(id);
+        Person personUpdate = new Person();
+        personUpdate.setId(id);
         personUpdate.setNombre(person.getNombre());
-        return personRepository.save(personUpdate);
+        personUpdate.setApellido(person.getApellido());
+        personUpdate.setDocumento(person.getDocumento());
+        personUpdate.setDomicilio(person.getDomicilio());
+        personRepository.save(personUpdate);
+        return personUpdate;
     }
 
     @Override
@@ -35,10 +40,10 @@ public class PersonServiceImpl implements IPersonService {
         personRepository.findById(id).orElseThrow(()-> new Exception("Person not found"));
         Person person = new Person();
         person.setId(id);
-        person.setNombre(personRepository.getById(id).getNombre());
-        person.setApellido(personRepository.getById(id).getApellido());
-        person.setDomicilio(personRepository.getById(id).getDomicilio());
-        person.setDocumento(personRepository.getById(id).getDocumento());
+        person.setNombre(personRepository.getReferenceById(id).getNombre());
+        person.setApellido(personRepository.getReferenceById(id).getApellido());
+        person.setDomicilio(personRepository.getReferenceById(id).getDomicilio());
+        person.setDocumento(personRepository.getReferenceById(id).getDocumento());
         return person;
     }
 
