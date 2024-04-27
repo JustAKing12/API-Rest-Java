@@ -19,6 +19,9 @@ public class PersonRepositoryTests {
     @Autowired
     private PersonRepository personRepository;
 
+
+    //Paso datos de prueba y si son correctos (no nulos), compruebo si se agrego la persona
+    //si el id > 0 & la persona guardada no es nula => la persona existe y fue agregada
     @Test
     public void PersonRepository_SavePerson(){
         Person person = Person.builder()
@@ -32,6 +35,7 @@ public class PersonRepositoryTests {
         Assertions.assertThat(savedPerson).isNotNull();
         Assertions.assertThat(savedPerson.getId()).isGreaterThan(0);
     }
+
     @Test
     public void PersonRepositoryGetAllPersons(){
         Person person = Person.builder()

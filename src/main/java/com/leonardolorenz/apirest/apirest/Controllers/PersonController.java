@@ -9,9 +9,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -76,7 +77,7 @@ public class PersonController {
             @ApiResponse(responseCode = "500", description = "params error", content = @Content)
     })
     @DeleteMapping("/{id}")
-    public String deletePerson(@PathVariable Long id) throws Exception {
+    public ResponseEntity<HashMap<String, String>> deletePerson(@PathVariable Long id) throws Exception {
         return personService.deletePerson(id);
     }
 }
