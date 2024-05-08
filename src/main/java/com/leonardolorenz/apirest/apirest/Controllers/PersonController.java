@@ -22,7 +22,7 @@ public class PersonController {
     private PersonServiceImpl personService;
     @Operation(summary = "View all Persons")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Person successfully created",
+            @ApiResponse(responseCode = "200", description = "Persons correctly obtained",
                     content={
                             @Content(mediaType = "application/json",schema = @Schema(implementation = Person.class))
                     }),
@@ -41,7 +41,7 @@ public class PersonController {
             @ApiResponse(responseCode = "500", description = "params error", content = @Content)
     })
     @GetMapping("/{id}")
-    public Person getPersonById(@Parameter(description = "person id",example = "1") @PathVariable Long id) throws Exception {
+    public Person getPersonById(@Parameter(description = "person id",example = "1") @PathVariable Long id) {
         return personService.getPersonById(id);
     }
     @Operation(summary = "Create a new Person")
@@ -77,7 +77,7 @@ public class PersonController {
             @ApiResponse(responseCode = "500", description = "params error", content = @Content)
     })
     @DeleteMapping("/{id}")
-    public ResponseEntity<HashMap<String, String>> deletePerson(@PathVariable Long id) throws Exception {
+    public ResponseEntity<HashMap<String, String>> deletePerson(@PathVariable Long id){
         return personService.deletePerson(id);
     }
 }

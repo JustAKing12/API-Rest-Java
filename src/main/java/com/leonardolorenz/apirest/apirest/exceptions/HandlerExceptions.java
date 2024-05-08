@@ -1,7 +1,6 @@
 package com.leonardolorenz.apirest.apirest.exceptions;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -10,7 +9,7 @@ import java.util.HashMap;
 
 @ControllerAdvice
 public class HandlerExceptions {
-    private static HashMap<String, Object> respuesta = new HashMap<>();
+    private final static HashMap<String, Object> respuesta = new HashMap<>();
 
     //Manejo mediante un handler la excepción si no encuentra a la persona, devuelvo error 404
     @ExceptionHandler({PersonNotFoundException.class})

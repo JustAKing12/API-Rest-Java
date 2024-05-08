@@ -31,7 +31,6 @@ public class PersonServiceImpl implements IPersonService {
     @Override
     public List<Person> getAllPersons() {
         if (personRepository.findAll().isEmpty()){
-
         }
         return personRepository.findAll();
     }

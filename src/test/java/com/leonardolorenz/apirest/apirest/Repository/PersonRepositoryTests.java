@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-
+import org.springframework.boot.test.mock.mockito.MockBean;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,11 +19,10 @@ public class PersonRepositoryTests {
     @Autowired
     private PersonRepository personRepository;
 
-
     //Paso datos de prueba y si son correctos (no nulos), compruebo si se agrego la persona
     //si el id > 0 & la persona guardada no es nula => la persona existe y fue agregada
     @Test
-    public void PersonRepository_SavePerson(){
+    public void PersonRepository_SavePersonTest(){
         Person person = Person.builder()
                 .nombre("jorge")
                 .apellido("smith")
@@ -35,9 +34,8 @@ public class PersonRepositoryTests {
         Assertions.assertThat(savedPerson).isNotNull();
         Assertions.assertThat(savedPerson.getId()).isGreaterThan(0);
     }
-
     @Test
-    public void PersonRepositoryGetAllPersons(){
+    public void PersonRepositoryGetAllPersonsTest(){
         Person person = Person.builder()
                 .nombre("jorge")
                 .apellido("smith")
@@ -58,7 +56,7 @@ public class PersonRepositoryTests {
         Assertions.assertThat(personList.size()).isEqualTo(2);
     }
     @Test
-    public void PersonRepositoryFindByIdPerson(){
+    public void PersonRepositoryFindByIdPersonTest(){
         Person person = Person.builder()
                 .nombre("jorge")
                 .apellido("smith")
@@ -73,7 +71,7 @@ public class PersonRepositoryTests {
     }
 
     @Test
-    public void PersonRepositoryGetByIdPerson(){
+    public void PersonRepositoryGetByIdPersonTest(){
         Person person = Person.builder()
                 .nombre("jorge")
                 .apellido("smith")
@@ -86,7 +84,7 @@ public class PersonRepositoryTests {
         Assertions.assertThat(personSaved).isNotNull();
     }
     @Test
-    public void PersonRepositoryUpdatePerson(){
+    public void PersonRepositoryUpdatePersonTest(){
         Person person = Person.builder()
                 .nombre("jorge")
                 .apellido("smith")
@@ -109,7 +107,7 @@ public class PersonRepositoryTests {
         Assertions.assertThat(personUpdate.getDomicilio()).isNotNull();
     }
     @Test
-    public void PersonRepositoryDeletePerson(){
+    public void PersonRepositoryDeletePersonTest(){
         Person person = Person.builder()
                 .nombre("jorge")
                 .apellido("smith")
